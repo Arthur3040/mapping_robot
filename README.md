@@ -70,21 +70,21 @@ you can use the simulator in gz, or the code for our real life robot model!
 ### Simulation
 open 3 terminals, source them and go inside the ros2_ws
 ```bash
-ros2 launch mapping_robot robot_state_publish.py
-ros2 run teleop
-ros2 run slam_toolbox
+ros2 launch mapping_robot robot_state_publish.py //terminal 1
+ros2 run teleop //terminal 2
+ros2 run slam_toolbox //terminal 3
 ```
-your gz should be looking similar to this:
+Gazeebo should be looking similar to this:
 IMAGE
 
 ### Physical robot
 Open 3 terminals, source them and go inside the ros2_ws, in a wife that both the computer and the ESP-32 are connected, configure the name and password of the code inside the micro_ros.cpp
 ```bash
-ros2 run connect micro-ros server
-ros2 launch mapping_robot real_bridge.py
-ros2 run teleop
+ros2 run connect micro-ros server //terminal 1
+ros2 launch mapping_robot real_bridge.py //terminal 2
+ros2 run teleop //terminal 3
 ```
-Your rviz should look similar to this:
+Rviz should look similar to this:
 IMAGE
 
 
