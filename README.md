@@ -32,7 +32,7 @@ Segue informacoes do robo de baixo custo que foi modelado.
 * 28BYJ48
 * 7.4V Battery
 * 6 1000uF Capacitors
-* 
+  
 ### Eletric Circuit/Schematic
 
 <img src="Specs/Eletronic_Schematic.jpg" alt="SchematicEletronic" width="700" />
