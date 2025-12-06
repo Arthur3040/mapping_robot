@@ -18,12 +18,25 @@
 ## Hardware
 Segue informacoes do robo de baixo custo que foi modelado.
 
+<img src="Specs/Chassi3D_model.png" alt="3DChassi" width="350" />
+
+
 ### Components List
-*
-*
-*
+* ESP32-DEV-30P
+* DRV8833
+* 2 Motor DC
+* VL53L0X
+* MPU6050
+* LM2596
+* ULN2003 Driver Board
+* 28BYJ48
+* 7.4V Battery
+* 6 1000uF Capacitors
+* 
 ### Eletric Circuit/Schematic
-IMAGEM circuito eletrico;
+
+<img src="Specs/Eletronic_Schematic.jpg" alt="SchematicEletronic" width="700" />
+
 
 ## Software Installation
 
