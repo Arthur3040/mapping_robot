@@ -1,0 +1,60 @@
+import os
+from ament_index_python.packages import get_package_share_directory
+from launch import LaunchDescription
+from launch.substitutions import Command
+from launch_ros.actions import Node
+
+def generate_launch_description():
+    pkg_share = get_package_share_directory('mapping_robot')
+
+    urdf_file = os.path.join(pkg_share, 'src', 'description', 'robotmain.urdf.xacro')
+    rviz_config = os.path.join(pkg_share, 'rviz', 'config.rviz')
+
+    return LaunchDescription([
+
+        Node(
+            package='robot_state_publisher',
+            executable='robot_state_publisher',
+            name='robot_state_publisher',
+            parameters=[{
+                'robot_description': Command(['xacro ', urdf_file])
+            }]
+        ),
+
+        Node(
+            package='joint_state_publisher',
+            executable='joint_state_publisher'
+        ),
+
+        # ESTE ERA O NECESSÁRIO PARA O SCAN FUNCIONAR
+        Node(
+            package='tf2_ros',
+            executable='static_transform_publisher',
+            name='static_lidar',
+            arguments=[
+                '0', '0', '0.08',
+                '0', '0', '0',
+                'base_link', 'lidar_link'
+            ]
+        ),
+
+        # slam toolbox lendo diretamente /scan e /odom do ESP32
+        Node(
+            package='slam_toolbox',
+            executable='async_slam_toolbox_node',
+            name='slam_toolbox',
+            parameters=[os.path.join(pkg_share, 'config', 'mapper_params.yaml')],
+            remappings=[
+                ('scan', '/scan'),
+                ('odom', '/odom'),
+            ]
+        ),
+
+        Node(
+            package='rviz2',
+            executable='rviz2',
+            output='screen',
+            arguments=['-d', rviz_config],
+        ),
+    ])
+
